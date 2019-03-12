@@ -17,11 +17,13 @@ import org.springframework.stereotype.Service;
 @Service
 public interface AffectationService {
 
-    public List<Affectation> findByFirmeReference(String reference);
+    public List<Affectation> findByFirme(String reference);
 
     public int creer(Affectation affectation);
 
     public void saveAffectation(Firme firme);
+    
+   // public List<Affectation> findByFirmeReference(String reference);
     
     //public Affectation findAffectationByFirme(String reference);
 

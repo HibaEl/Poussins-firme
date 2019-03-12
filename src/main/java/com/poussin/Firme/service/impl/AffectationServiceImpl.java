@@ -24,11 +24,16 @@ public class AffectationServiceImpl implements AffectationService {
     @Autowired
     private AffectationDao affectationDao;
 
-    @Override
-    public List<Affectation> findByFirmeReference(String reference) {
+    /*  @Override
+    public List<Affectation> findByFirme(Firme firme) {
+        return affectationDao.findByFirme(firme);
+    }  */
+
+        @Override
+    public List<Affectation> findByFirme(String reference) {
         return affectationDao.findByFirmeReference(reference);
     }
-
+    
    /*  @Override
     public Affectation findAffectationByFirme(String reference) {
         return affectationDao.findAffectationByFirme(reference);   
@@ -58,5 +63,7 @@ public class AffectationServiceImpl implements AffectationService {
     public void setAffectationDao(AffectationDao affectationDao) {
         this.affectationDao = affectationDao;
     }
+
+
 
 }

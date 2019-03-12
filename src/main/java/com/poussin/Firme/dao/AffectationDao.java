@@ -20,6 +20,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AffectationDao extends JpaRepository<Affectation, Long>{
     
+     public List<Affectation> findByFirme(Firme firme);
+     
      public List<Affectation> findByFirmeReference(String reference);
      
     /*  @Query("select a from Affectation a where a.firme.reference = :reference")

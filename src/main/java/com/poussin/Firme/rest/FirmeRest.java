@@ -5,13 +5,18 @@
  */
 package com.poussin.Firme.rest;
 
+import com.poussin.Firme.bean.Affectation;
 import com.poussin.Firme.bean.Firme;
+import com.poussin.Firme.rest.converter.AbstractConverter;
+import com.poussin.Firme.rest.converter.AffectationConverter;
 import com.poussin.Firme.rest.converter.FirmeConverter;
+import com.poussin.Firme.rest.vo.AffectationVo;
 import com.poussin.Firme.rest.vo.FirmeVo;
 import com.poussin.Firme.service.AffectationService;
 import com.poussin.Firme.service.FirmeService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,6 +40,17 @@ public class FirmeRest {
     @Autowired
     private AffectationService affectationService;
 
+        @Autowired
+    @Qualifier("affectationConverter")
+    private AbstractConverter<Affectation, AffectationVo> affectationConverter;
+        
+        
+   @GetMapping("/")
+    public List<AffectationVo> findByFirme(String reference) {
+        final List<Affectation> affectations = affectationService.findByFirme(firmeConverter.toItem(firmeVo));
+        return new AffectationConverter.toVo(affectations);
+    }
+    
     @GetMapping("/")
     public List<FirmeVo> findAll() {
         return new FirmeConverter().toVo(firmeService.findAll());
